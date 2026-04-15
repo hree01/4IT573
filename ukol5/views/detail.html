@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail úkolu</title>
+</head>
+<body>
+    <h1>Todo: <%= todo.title %></h1>
+    
+    <p>
+        Stav: <strong><%= todo.done ? 'Hotovo' : 'Není hotovo' %></strong>
+    </p>
+
+    <hr>
+
+    <h3>Akce:</h3>
+    <ul>
+        <li>
+            <a href="/toggle-todo/<%= todo.id %>">
+                <%= todo.done ? 'Označit jako nehotové' : 'Označit jako hotové' %>
+            </a>
+        </li>
+        <li>
+            <a href="/remove-todo/<%= todo.id %>" style="color: red;">Odstranit úkol</a>
+        </li>
+    </ul>
+
+    <hr>
+
+    <h3>Změnit titulek:</h3>
+    <form method="post" action="/todo/<%= todo.id %>/edit">
+        <input name="title" value="<%= todo.title %>" required>
+        <button type="submit">Uložit změny</button>
+    </form>
+
+    <br>
+    <a href="/">Zpět na seznam úkolů</a>
+</body>
+</html>
