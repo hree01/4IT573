@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= todo.title %> – Todo detail</title>
+  </head>
+  <body>
+  <div id="detail-container">
+    <%- include('./_detail_content.html') %>
+  </div>
+  
+
+
+  <script>
+  // získání ID tohoto úkolu z EJS, abychom věděli, co sledovat
+  const currentTodoId = Number("<%= todo.id %>");
+  const ws = new WebSocket('ws://localhost:3000/ws');
+
+  ws.addEventListener('message', (event) => {
+    const data = JSON.parse(event.data);
+
+    // aktualizace detailu (jen pokud se id shoduje)
+    if (data.type === 'detail-update' && data.id === currentTodoId) {
+      document.body.innerHTML = data.html;
+    }
+
+    // pokud byl úkol mezitím smazán
+    if (data.type === 'todo-deleted' && data.id === currentTodoId) {
+      document.body.innerHTML = `
+        <h1>Chyba!</h1>
+        <p>Tento úkol byl právě smazán jiným uživatelem.</p>
+        <a href="/">&larr; Zpět na seznam</a>
+      `;
+    }
+  });
+</script>
+</body>
+</html>
