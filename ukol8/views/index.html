@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo seznam</title>
+  </head>
+  <body>
+    <h1>&#9989; Todo seznam</h1>
+
+    
+
+    <div id="todos">
+  <%- include('./_todos.html') %>
+</div>
+
+    <hr />
+
+    <fieldset>
+      <legend><strong>Přidat nový úkol</strong></legend>
+      <form method="post" action="/add-todo">
+        <label for="title">Název úkolu:</label>
+        <br />
+        <input id="title" name="title" size="40" placeholder="Co je potřeba udělat?" />
+        <br /><br />
+
+    <label for="priority">Priorita:</label>
+    <br />
+    <select id="priority" name="priority">
+      <option value="low" >Nízká</option>
+      <option value="normal" >Normální</option>
+      <option value="high">Vysoká</option>
+    </select>
+    <br />
+    <br />
+        <button type="submit">&#43; Přidat</button>
+      </form>
+    </fieldset>
+  <script>
+  const ws = new WebSocket('ws://localhost:3000/ws')
+ws.addEventListener('message', (event) => {
+  // převedení textové zprávy zpět na objekt
+    const data = JSON.parse(event.data);
+
+    // reaguje se pouze na aktualizaci seznamu
+    if (data.type === 'list-update') {
+      document.getElementById('todos').innerHTML = data.html;
+    }
+  })
+</script>
+
+  </body>
+</html>
