@@ -1,0 +1,187 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eef2f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.app-container {
+    display: flex;
+    width: 100%;
+    max-width: 800px; 
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+/* Boční panel s místnostmi */
+.sidebar {
+    width: 30%;
+    background: #2c3e50;
+    color: white;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Tento řádek posune tlačítko dospodu panelu */
+}
+
+/* Styl pro červené tlačítko */
+.danger-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: auto; /* Pojistka, aby bylo opravdu dole */
+}
+
+.danger-btn:hover {
+    background: #c0392b;
+}
+
+.sidebar h2 {
+    font-size: 1.2rem;
+    margin-top: 0;
+    padding-left: 10px;
+    color: #bdc3c7;
+}
+
+#rooms-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.room-item {
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    transition: background 0.2s;
+}
+
+.room-item:hover {
+    background: #34495e;
+}
+
+.room-item.active {
+    background: #007bff;
+    font-weight: bold;
+}
+
+/* Chatovací oblast (pravá strana) */
+.chat-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #f8f9fa;
+}
+
+h1 {
+    text-align: center;
+    background: #007bff;
+    color: white;
+    margin: 0;
+    padding: 15px;
+    font-size: 1.3rem;
+}
+
+#chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: #e2e8f0; /* neutrální šedá pro ostatní lidi */
+    max-width: 80%;
+    align-self: flex-start; /* Ostatní zprávy budou vlevo */
+    word-break: break-word;
+}
+
+/* MOJE zprávy */
+.message.my-message {
+    background: #007bff; /* Modrá barva */
+    color: white; /* Bílý text */
+    align-self: flex-end; /* Posune zprávu doprava */
+}
+/* Struktura uvnitř zprávové bubliny */
+.message {
+    display: flex;
+    flex-direction: column;
+}
+
+.message-author {
+    font-size: 0.85rem;
+    color: #4a5568;
+    margin-bottom: 2px;
+}
+
+/* Pokud je to moje zpráva, autor bude mít světlejší barvu na modrém pozadí */
+.message.my-message .message-author {
+    color: #e2e8f0;
+    text-align: right; /* Zarovnáme jméno doprava k okraji naší bubliny */
+}
+
+.message-text {
+    font-size: 1rem;
+}
+
+.message-time {
+    font-size: 0.75rem;
+    color: #718096;
+    margin-top: 4px;
+    text-align: right; /* Čas bude vždy v pravém spodním rohu bubliny */
+}
+
+.message.my-message .message-time {
+    color: #cbd5e0; /* Světlejší barva času na modrém pozadí */
+}
+
+.chat-form {
+    display: flex;
+    padding: 15px;
+    gap: 10px;
+    background: white;
+    border-top: 1px solid #dee2e6;
+}
+
+#username-input {
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+}
+
+#message-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+}
+
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #0056b3;
+}

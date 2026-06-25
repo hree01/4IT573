@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rychlochat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="sidebar">
+            <h2>Místnosti</h2>
+            <ul id="rooms-list">
+                <li class="room-item active" data-room="obecne"># obecne</li>
+                <li class="room-item" data-room="hry"># hry</li>
+                <li class="room-item" data-room="skola"># skola</li>
+            </ul>
+
+            <button id="clear-cache-btn" class="danger-btn">Smazat identitu</button>
+        </div>
+
+        <div class="chat-container">
+            <h1 id="chat-header">Rychlochat 💬 (# obecne)</h1>
+            
+            <div id="chat-messages"></div>
+
+            <div class="chat-form">
+                <input type="text" id="username-input" placeholder="Tvoje přezdívka..." maxlength="20">
+                <input type="text" id="message-input" placeholder="Napiš zprávu..." autocomplete="off">
+                <button id="send-btn">Odeslat</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="chat.js"></script>
+</body>
+</html>
